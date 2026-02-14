@@ -1,0 +1,91 @@
+# ==============================================
+# 自定义放行规则 (Classical / Text)
+# ==============================================
+# 示例: 仅删除下方注释号即可启用
+# DOMAIN-SUFFIX,example.com
+# IP-CIDR,192.168.0.0/16
+# DOMAIN,dl.google.com
+
+# ==============================================
+# 局域网 & 特殊 IP 段
+# ==============================================
+IP-CIDR,10.0.0.0/8
+IP-CIDR,172.16.0.0/12
+IP-CIDR,192.168.0.0/16
+IP-CIDR,119.8.31.0/24
+IP-CIDR,43.248.11.0/24
+IP-CIDR6,fc00::/7
+
+# ==============================================
+# 通用 & 教育 & 站点
+# ==============================================
+# 清华镜像
+DOMAIN,mirrors.tuna.tsinghua.edu.cn
+# 教育网
+DOMAIN-SUFFIX,edu.cn
+# 资源/图床/个人站
+DOMAIN-SUFFIX,ghxi.com
+DOMAIN-SUFFIX,mrzgh.top
+DOMAIN-KEYWORD,mrzgh
+DOMAIN,s2.loli.net
+DOMAIN,dash.pqjc.site
+
+# ==============================================
+# 手机品牌 & 系统服务
+# ==============================================
+# 小米 (安装器/主题/社区)
+DOMAIN,api.installer.xiaomi.com
+DOMAIN-SUFFIX,thm.market.xiaomi.com
+DOMAIN-SUFFIX,api.vip.miui.com
+# 华为
+DOMAIN-KEYWORD,huawei
+DOMAIN-SUFFIX,huaweicloud.com
+# 讯飞输入法
+DOMAIN-SUFFIX,inputnlp.xfinfr.com
+DOMAIN-SUFFIX,imeclient.openspeech.cn
+
+# ==============================================
+# 社交 & 媒体应用
+# ==============================================
+# 哔哩哔哩 (Bilibili)
+PROCESS-NAME,tv.danmaku.bili
+PROCESS-PATH,tv.danmaku.bili
+
+# 小红书
+PROCESS-PATH,com.xingin.xhs
+
+# 音乐应用 (网易云/酷我/其他)
+PROCESS-NAME,com.netease.cloudmusic
+PROCESS-NAME,cn.kuwo.player
+PROCESS-NAME,cn.aqzscn.stream_music
+
+# 腾讯 (Tencent) - 包含微信/QQ等正则匹配
+PROCESS-NAME-REGEX,com.tencent.*
+
+# Hush (Yamby)
+PROCESS-NAME,com.hush.yamby
+
+# ==============================================
+# 游戏 (米哈游)
+# ==============================================
+PROCESS-NAME-REGEX,com.mihoyo.*
+DOMAIN-SUFFIX,yuanshen.com
+DOMAIN-SUFFIX,mihoyo.com
+DOMAIN-SUFFIX,hoyoverse.com
+DOMAIN-KEYWORD,yuanshen
+DOMAIN-KEYWORD,mihoyo
+DOMAIN-KEYWORD,hoyoverse
+
+# ==============================================
+# 购物 & 生活 & 工具
+# ==============================================
+# 京东
+PROCESS-NAME,com.jingdong.app.mall
+DOMAIN-SUFFIX,jd.com
+
+# 高德地图
+PROCESS-NAME,com.autonavi.minimap
+
+# 网盘 (电信/蓝奏)
+DOMAIN-SUFFIX,189.cn
+DOMAIN-KEYWORD,lanzou
