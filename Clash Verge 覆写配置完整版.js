@@ -1,15 +1,14 @@
 // 国内DNS服务器
 const domesticNameservers = [
-  "https://223.5.5.5/dns-query", // 阿里DoH
+  "https://dns.alidns.com/dns-query", // 阿里DoH
   "https://doh.pub/dns-query" // 腾讯DoH，因腾讯云即将关闭免费版IP访问，故用域名
 ];
 // 国外DNS服务器
 const foreignNameservers = [
   "https://cloudflare-dns.com/dns-query", // CloudflareDNS
-  "https://77.88.8.8/dns-query", //YandexDNS
   "https://8.8.4.4/dns-query#ecs=1.1.1.1/24&ecs-override=true", // GoogleDNS
   "https://208.67.222.222/dns-query#ecs=1.1.1.1/24&ecs-override=true", // OpenDNS
-  "https://9.9.9.9/dns-query", //Quad9DNS
+  "https://dns.quad9.net/dns-query" //Quad9DNS
 ];
 // DNS配置
 const dnsConfig = {
@@ -35,11 +34,11 @@ const dnsConfig = {
     // 微信快速登录检测失败
     "localhost.work.weixin.qq.com"
   ],
-  "default-nameserver": ["223.5.5.5", "1.2.4.8"],
+  "default-nameserver": ["223.5.5.5", "119.29.29.29"],
   "nameserver": [...foreignNameservers],
   "proxy-server-nameserver": [...domesticNameservers],
   "direct-nameserver": [...domesticNameservers],
-  "direct-nameserver-follow-policy": false,
+  "direct-nameserver-follow-policy": true,
   "nameserver-policy": {
     "geosite:cn": domesticNameservers
   }
@@ -194,13 +193,13 @@ const rules = [
   // blackmatrix7 规则集
 
   // MetaCubeX 规则集
-  "RULE-SET,openai,💸 ChatGPT-Gemini-XAI-Perplexity",
+  "RULE-SET,openai,💸 AI",
   "RULE-SET,pikpak,🅿️ PikPak",
   "RULE-SET,bybit,🪙 Bybit",
   "RULE-SET,anthropic,💵 Claude",
-  "RULE-SET,google-gemini,💸 ChatGPT-Gemini-XAI-Perplexity",
-  "RULE-SET,xai,💸 ChatGPT-Gemini-XAI-Perplexity",
-  "RULE-SET,perplexity,💸 ChatGPT-Gemini-XAI-Perplexity",
+  "RULE-SET,google-gemini,💸 AI",
+  "RULE-SET,xai,💸 AI",
+  "RULE-SET,perplexity,💸 AI",
   // Loyalsoldier 规则集
   "RULE-SET,applications,🔗 全局直连",
   "RULE-SET,private,🔗 全局直连",
@@ -233,12 +232,12 @@ const groupBaseOption = {
 
 const landingNodeProxies = [
   {
-    "name": "webshare", // 给你的落地节点起个名字
-    "server": "", // 替换成你的落地节点 IP 或域名
-    "port": 12345, // 替换成你的落地节点端口
-    "type": "socks5",
+    "name": "新加坡1", // 给你的落地节点起个名字
+    "server": "sg-fdc.aikunapp.com", // 替换成你的落地节点 IP 或域名
+    "port": 6001, // 替换成你的落地节点端口
+    "type": "anytls",
     "username": "", // 替换成你的用户名
-    "password": "", // 替换成你的密码
+    "password": "517eacec-b279-4b5c-9f0a-ee5ba6d66620", // 替换成你的密码
     "tls": false,
     "skip-cert-verify": true,
     "udp": true,
@@ -321,7 +320,7 @@ const proxyGroupsConfig = [
   },
   {
     ...groupBaseOption,
-    "name": "💸 ChatGPT-Gemini-XAI-Perplexity",
+    "name": "💸 AI",
     "type": "select",
     "proxies": ["🔰 模式选择", "⚙️ 节点选择", "🕊️ 落地节点", "🔗 全局直连", "♻️ 延迟选优", "🚑 故障转移", "⚖️ 负载均衡(散列)", "☁️ 负载均衡(轮询)"],
     "include-all": true,
@@ -434,15 +433,24 @@ const proxyGroupsConfig = [
 
 // 多订阅合并，这里添加额外的地址
 const proxyProviders = {
-  "Kitty": {
-    "type": "http",   // 订阅链接
-    "url": "https://conf1.hokkaido-toyoni.com/oosaka/918928ebda35460e57a93d14fc33c7ce",
-    "interval": 86400,  // 自动更新时间 86400 (秒) / 3600 = 24 小时
-    "proxy": "🔰 模式选择",
-    "override": {
-      "additional-prefix": "Kitty |"  // 节点名称前缀 p1，用于区别机场节点
-    }
-  },
+  // "狗子云": {
+  //   "type": "http",   // 订阅链接
+  //   "url": "https://pwac.gzi8998-ddns0721.eu/api/v1/gzcloud/subscribe?token=1b73e40b0add45cdbbc29bfd6b30d691",
+  //   "interval": 86400,  // 自动更新时间 86400 (秒) / 3600 = 24 小时
+  //   "proxy": "🔰 模式选择",
+  //   "override": {
+  //     "additional-prefix": "狗子云 | "  // 节点名称前缀 p1，用于区别机场节点
+  //   }
+  // },
+  // "赔钱": {
+  //   "type": "http",   // 订阅链接
+  //   "url": "https://dash.pqjc.site/api/v1/pq/9aae40920b1a7048052e01942aa3cef8",
+  //   "interval": 86400,  // 自动更新时间 86400 (秒) / 3600 = 24 小时
+  //   "proxy": "🔰 模式选择",
+  //   "override": {
+  //     "additional-prefix": "赔钱 | "  // 节点名称前缀 p1，用于区别机场节点
+  //   }
+  // },
   // 其他订阅地址
 }
 
@@ -451,7 +459,9 @@ function main(config) {
   const originalProxies = config?.proxies ? [...config.proxies] : [];
   const proxyCount = originalProxies.length;
   const originalProviders = config?.["proxy-providers"] || {};
-  const proxyProviderCount = originalProviders !== null && typeof originalProviders === 'object' ? Object.keys(originalProviders).length : 0;
+  const proxyProviderCount = originalProviders !== null && typeof originalProviders === 'object'
+    ? Object.keys(originalProviders).length
+    : 0;
 
   if (proxyCount === 0 && proxyProviderCount === 0) {
     throw new Error("配置文件中未找到任何代理");
@@ -459,16 +469,14 @@ function main(config) {
 
   config["dns"] = dnsConfig;
   config["rule-providers"] = ruleProviders;
-  config["rules"] = rules; // Use the modified rules array defined above
+  config["rules"] = rules;
 
-  // Process original proxies (just ensure UDP)
+  // Process original proxies (ensure UDP)
   const processedProxies = originalProxies.map(proxy => {
     if (proxy && typeof proxy === 'object' && proxy.name) {
       proxy.udp = true;
-
-      // 节点绑定的接口，从此接口发起连接，适用于部分vpn情况
-      // proxy["interface-name"] = "WLAN"
-      // proxy["interface-name"] = "以太网"
+      // proxy["interface-name"] = "WLAN";   // 如需绑定网卡可取消注释
+      // proxy["interface-name"] = "以太网";
     } else {
       console.warn("警告：发现一个无效或缺少名称的原始代理配置:", proxy);
       return null;
@@ -483,23 +491,22 @@ function main(config) {
     ...proxyProviders
   };
 
-  // 转义正则元字符，保证名字按“字面量”匹配
+  // ==================== 节点过滤相关 ====================
+  // 转义正则元字符（用于落地节点精确排除）
   function escapeForRegExp(s) {
     return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
 
-  // 取出所有落地节点的名字，并做转义
+  // 构造落地节点精确排除正则（只排除完全等于落地节点名称的）
   const landingNodeNames = landingNodeProxies.map(p => p.name);
   const escapedNames = landingNodeNames
     .map(escapeForRegExp)
     .join('|');
-
-  // 构造只匹配完全等于这些名字的正则
   const excludeLandingFilter = escapedNames
     ? `^(?:${escapedNames})$`
     : null;
 
-  // 定义需要排除落地节点的组名
+  // 需要排除落地节点的组
   const groupsToExcludeLandingNodes = [
     "⚙️ 节点选择",
     "♻️ 延迟选优",
@@ -507,13 +514,34 @@ function main(config) {
     "☁️ 负载均衡(轮询)"
   ];
 
-  // 遍历所有代理组配置，为指定的组添加排除落地节点的过滤器
+  // ==================== 干净节点过滤器（排除垃圾信息）===================
+  // 使用最稳定、最常用的写法（忽略大小写）
+  const cleanExcludeFilter = "(?i)套餐|重置|剩余|到期|订阅|群|账户|流量|有效期|时间|官网|失联|余额|测试|试用|过期|Trial|Account|流量用尽";
+
+  // 需要显示干净节点列表的组（可自行增删）
+  const groupsNeedClean = [
+    "⚙️ 节点选择",
+    "♻️ 延迟选优",
+    "🚑 故障转移",
+    "⚖️ 负载均衡(散列)",
+    "☁️ 负载均衡(轮询)",
+    "🐟 漏网之鱼",
+    "🌍 国外媒体"
+    // 如果你还有其他组也想要干净列表，可以继续添加
+  ];
+
+  // ==================== 处理代理组 ====================
   const finalProxyGroups = proxyGroupsConfig.map(group => {
-    // 检查当前组名是否在需要排除落地节点的列表中，并且确实有落地节点需要排除
+    // 1. 先添加干净节点过滤（排除套餐、剩余流量等垃圾信息）
+    if (groupsNeedClean.includes(group.name)) {
+      const existing = group["exclude-filter"];
+      group["exclude-filter"] = existing
+        ? `${existing}|${cleanExcludeFilter}`
+        : cleanExcludeFilter;
+    }
+
+    // 2. 再处理落地节点排除（仅对指定组生效）
     if (groupsToExcludeLandingNodes.includes(group.name) && excludeLandingFilter) {
-      // 合并已有的 exclude-filter：只要旧规则 或 新排除规则 匹配，就排除
-      // 如果 group["exclude-filter"] 已存在，则用 | 连接新旧规则
-      // 否则直接使用新的 excludeLandingFilter
       const existingFilter = group["exclude-filter"];
       group["exclude-filter"] = existingFilter
         ? `(${existingFilter})|(${excludeLandingFilter})`
@@ -523,9 +551,10 @@ function main(config) {
         `信息：为组 [${group.name}] 添加或合并了落地节点排除过滤器: ${group["exclude-filter"]}`
       );
     }
-    return group; // 返回（可能已修改的）组配置
+
+    return group;
   });
 
-  config["proxy-groups"] = finalProxyGroups; // 使用处理过的代理组
+  config["proxy-groups"] = finalProxyGroups;
   return config;
 }
